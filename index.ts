@@ -25,6 +25,7 @@ console.log(product1)
 observers.push(sendEmailMock)
 observers.push(saveToDatabaseMock)
 
+// second product (with validation)
 try {
 	const product2: Product = createProduct(uuidv4(), "Shirt", createPrice(50))
 	console.log(product2)
@@ -44,6 +45,8 @@ try {
 	}
 }
 
+// Simulate stock reduction
+
 const stockLevel = createStockLevel(10)
 const quantity = createQuantity(2)
 
@@ -53,5 +56,7 @@ const stockReducedEvent: StockReducedEvent = {
 	newLevel: reduceStock(stockLevel, quantity),
 	quantity,
 }
+
+// Notify observers about stock reduction
 
 observers.forEach((observer) => observer(stockReducedEvent))
